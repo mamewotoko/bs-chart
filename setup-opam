@@ -1,0 +1,1 @@
+opam install -y atdgen yojson core_extended

@@ -1,0 +1,43 @@
+(* color name, rgb ... *)
+type color_t = string
+(* type chart_type = [
+ *     Line <json name="line">
+ *   | Bar <json name="bar">
+ *   | Aare <json name="area">
+ * ] *)
+type chart_type = string
+
+type dataset_t = {
+    label: string;
+    data: float list;
+    backgroundColor: color_t list;
+    borderColor: color_t list;
+    borderWidth: float;
+  }
+
+type data_t = {
+    labels: string list;
+    datasets: dataset_t list;
+  }
+
+type ticks_opt_t = {
+  beginAtZero: bool;
+}
+
+type axis_opt_t = {
+   ticks: ticks_opt_t;
+}
+
+type scales_opt_t = {
+   yAxes: axis_opt_t list;
+}
+
+type opt_t = {
+    scales: scales_opt_t;
+  }
+
+type param_t = {
+    type_ <json name="type">: chart_type;
+    data: data_t;
+    options: opt_t;
+  }
