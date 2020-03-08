@@ -100,13 +100,8 @@ let param2 =
     ()
 ;;
                              
-let main () =
-  let context = match Dom.Document.getElementById "canvas" Dom.document with
-    | None -> raise (Not_found_element "canvas is not found")
-    | Some canvas ->
-       Js.log canvas;
-       CanvasElement.getContext2d canvas in
-  let param = param2 in
+ 
+  (* let param = param2 in *)
   (* let param = {
    *     type_ = "bar";
    *     data = {
@@ -143,7 +138,58 @@ let main () =
    *           }
    *       }
    *   } in *)
-  ignore (Chartjs.make context param)
+(* ignore (Chartjs.make context param) *)
+
+
+(* let random_list scale len =
+ *   let rec iter n lst =
+ *     if n = 0 then
+ *       lst
+ *     else
+ *       iter (n-1) (Random.float scale)::lst in
+ *   iter len []
+ * ;;
+ * 
+ * let random_xy scale_x scale_y len =
+ *   let xlst = random_list scale_x len in
+ *   let ylst = random_list scale_y len in
+ *   map2 (fun x y -> point_t ~x:x ~y:y)
+ * ;; *)
+
+let param_scatter = Scatter.param_t
+                      ~type_:"scatter"
+                      ~data:(Scatter.data_t
+                               ~datasets:[| Scatter.dataset_t
+                                              ~label:"some data"
+                                              ~data:[|
+                                                { Scatter.x=1.; Scatter.y=1. };
+                                                { Scatter.x=20.; Scatter.y=3. };
+                                                { Scatter.x=1.; Scatter.y=4.; };
+                                                { Scatter.x=1.; Scatter.y=5.; };
+                                                { Scatter.x=6.; Scatter.y=9.; };
+                                                { Scatter.x=2.; Scatter.y=10.; };
+                                              |]
+                                              ~backgroundColor:"Green"
+                                              ~borderColor:"Green"
+                                            ()
+                               |]
+                               ())
+                      ~options:(Scatter.opt_t
+                                  ~title:(Scatter.title_t
+                                            ~display:true
+                                            ~text:"Chart.js scatter plot"
+                                            ())
+                                  ())
+                      ()
+;;
+
+let main () =
+  let context = match Dom.Document.getElementById "canvas" Dom.document with
+    | None -> raise (Not_found_element "canvas is not found")
+    | Some canvas ->
+       Js.log canvas;
+       CanvasElement.getContext2d canvas in
+  ignore (Chartjs.Scatter.make context param_scatter)
 ;;
 
 let _ =
