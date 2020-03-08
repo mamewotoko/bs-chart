@@ -37,6 +37,7 @@ type axis_opt_t = {
     gridLines: gridLines_t [@bs.optional];
     ticks: ticks_opt_t  [@bs.optional];
     display: bool  [@bs.optional];
+    stacked: bool [@bs.optional]; (* bar *)
   } [@@bs.deriving {abstract = light}]
 
 (* TODO: axisID -> config *)
@@ -80,14 +81,15 @@ type dataset_t = {
   label: string;
   data: float array;
   backgroundColor: color_t array [@bs.optional];
+  hoverBackgroundColor: color_t array [@bs.optional];
   borderColor: color_t array [@bs.optional];
   borderWidth: float [@bs.optional];
   fill: bool [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
 type data_t = {
-    labels: string array;
-    datasets: dataset_t array
+    labels: string array [@bs.optional];
+    datasets: dataset_t array [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
 type param_t = {
