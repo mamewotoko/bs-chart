@@ -1,6 +1,12 @@
 open Chartjs
 open Webapi
 open Canvas
+
+let (>>=) e f =
+  match e with
+    None -> None
+  | Some e -> Some (f e)
+  
    
 exception Not_found_element of string
 
@@ -180,7 +186,7 @@ let pie_param =
  *   map2 (fun x y -> point_t ~x:x ~y:y)
  * ;; *)
 
-let param_scatter = Scatter.param_t
+let scatter_param = Scatter.param_t
                       ~type_:"scatter"
                       ~data:(Scatter.data_t
                                ~datasets:[| Scatter.dataset_t
@@ -207,27 +213,27 @@ let param_scatter = Scatter.param_t
                       ()
 ;;
 
-let param_bubble = Bubble.param_t
+let bubble_param = Bubble.param_t
                       ~type_:"bubble"
                       ~data:(Bubble.data_t
-                               ~datasets:[| Bubble.dataset_t
-                                              ~label:"some data"
-                                              ~data:[|
-                                                { Bubble.x=1.; Bubble.y=1.; Bubble.r=20.; };
-                                                { Bubble.x=20.; Bubble.y=3.; Bubble.r=10.; };
-                                                { Bubble.x=1.; Bubble.y=4.; Bubble.r=2.; };
-                                                { Bubble.x=1.; Bubble.y=5.; Bubble.r=200.; };
-                                                { Bubble.x=6.; Bubble.y=9.; Bubble.r=20.; };
-                                                { Bubble.x=2.; Bubble.y=10.; Bubble.r=2.; };
-                                              |]
-                                              ~backgroundColor:"rgba(0,0,255,0.5)"
-                                              ~hoverBackgroundColor:"rgba(0,0,255,0.2)"
-                                              ~borderColor:"rgba(0,0,255,0.5)"
-                                            ()
+                               ~datasets:[|Bubble.dataset_t
+                                             ~label:"some data"
+                                             ~data:[|
+                                               { Bubble.x=1.; Bubble.y=1.; Bubble.r=20.; };
+                                               { Bubble.x=20.; Bubble.y=3.; Bubble.r=10.; };
+                                               { Bubble.x=1.; Bubble.y=4.; Bubble.r=2.; };
+                                               { Bubble.x=1.; Bubble.y=5.; Bubble.r=200.; };
+                                               { Bubble.x=6.; Bubble.y=9.; Bubble.r=20.; };
+                                               { Bubble.x=2.; Bubble.y=10.; Bubble.r=2.; };
+                                             |]
+                                             ~backgroundColor:"rgba(0,0,255,0.5)"
+                                             ~hoverBackgroundColor:"rgba(0,0,255,0.2)"
+                                             ~borderColor:"rgba(0,0,255,0.5)"
+                                             ()
                                |]
                                ())
-                      ~options:(Bubble.opt_t
-                                  ~title:(Bubble.title_t
+                      ~options:(opt_t
+                                  ~title:(title_t
                                             ~display:true
                                             ~text:"Chart.js Bubble plot"
                                             ())
@@ -236,15 +242,28 @@ let param_bubble = Bubble.param_t
 ;;
 
 let main () =
-  let context = match Dom.Document.getElementById "canvas" Dom.document with
-    | None -> raise (Not_found_element "canvas is not found")
-    | Some canvas ->
-       Js.log canvas;
-       CanvasElement.getContext2d canvas in
-  (* ignore (Chartjs.Scatter.make context param_scatter) *)
-  ignore (Chartjs.Bubble.make context param_bubble)
+  let draw id f param =
+    let context = match Dom.Document.getElementById id Dom.document with
+      | None -> raise (Not_found_element "canvas is not found")
+      | Some canvas ->
+         CanvasElement.getContext2d canvas in
+    ignore (f context param) in
+  draw "bar" Chartjs.make param1;
+  draw "line" Chartjs.make param2;
+  draw "pie" Chartjs.make pie_param;
+  draw "scatter" Chartjs.Scatter.make scatter_param;
+  draw "bubble" Chartjs.Bubble.make bubble_param;
+  
+  (* contxt >=
+   * let context = match Dom.Document.getElementById "canvas" Dom.document with
+   *   | None -> raise (Not_found_element "canvas is not found")
+   *   | Some canvas ->
+   *      Js.log canvas;
+   *      CanvasElement.getContext2d canvas in
+   * (\* ignore (Chartjs.Scatter.make context param_scatter) *\)
+   * ignore (Chartjs.Bubble.make context param_bubble)
+   * ignore (Chartjs.Bubble.make context param_bubble) *)
   (* Chartjs.make context pie_param *)
-  |> ignore
 ;;
 
 let _ =

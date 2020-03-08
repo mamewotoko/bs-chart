@@ -77,9 +77,9 @@ type opt_t = {
     scales: scales_opt_t [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
-type dataset_t = {
+type 'a dataset_t = {
   label: string;
-  data: float array;
+  data: 'a array;
   backgroundColor: color_t array [@bs.optional];
   hoverBackgroundColor: color_t array [@bs.optional];
   borderColor: color_t array [@bs.optional];
@@ -87,14 +87,14 @@ type dataset_t = {
   fill: bool [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
-type data_t = {
+type 'a data_t = {
     labels: string array [@bs.optional];
-    datasets: dataset_t array [@bs.optional];
+    datasets: 'a dataset_t array [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
 type param_t = {
     type_: string [@bs.as "type"] [@bs.optional];
-    data: data_t [@bs.optional];
+    data: float data_t [@bs.optional];
     options: opt_t [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
@@ -116,7 +116,7 @@ module Scatter =
                                               
     type data_t = {
         labels: string array [@bs.optional];
-        datasets: dataset_t array  [@bs.optional];
+        datasets: dataset_t array [@bs.optional];
       } [@@bs.deriving {abstract = light}]
 
     type title_t = {
@@ -151,6 +151,7 @@ module Bubble =
         y: float;
         r: float;
       }
+
     type dataset_t = {
         label: string  [@bs.optional];
         data: point_t array [@bs.optional];
@@ -158,31 +159,14 @@ module Bubble =
         hoverBackgroundColor: color_t [@bs.optional];
         borderColor: color_t [@bs.optional];
       } [@@bs.deriving {abstract = light}]
-                                              
+
     type data_t = {
         labels: string array [@bs.optional];
-        datasets: dataset_t array  [@bs.optional];
+        datasets: dataset_t array [@bs.optional];
       } [@@bs.deriving {abstract = light}]
-
-    type title_t = {
-        display: bool [@bs.optional];
-        text: string [@bs.optional];
-      } [@@bs.deriving {abstract = light}]
-
-    type opt_t = {
-        responsive: bool [@bs.optional];
-        title: title_t [@bs.optional];
-        legend: legend_t [@bs.optional];
-        tool_tips: tool_tips_t [@bs.optional];
-        showLines: bool [@bs.optional];
-        spanGaps: bool [@bs.optional];
-        hover: hover_t [@bs.optional];
-        scales: scales_opt_t [@bs.optional];
-      } [@@bs.deriving {abstract = light}]
-
+                   
     type param_t = {
-        (* bubble *)
-        type_: string [@bs.as "type"] [@bs.optional];
+        type_: string [@bs.as "type"] [@bs.optional]; (** should be "bubble" *)
         data: data_t [@bs.optional];
         options: opt_t [@bs.optional];
       } [@@bs.deriving {abstract = light}]
