@@ -109,7 +109,7 @@ let param2 =
 
 let pie_param =
   param_t
-    ~type_:(chart_typeToJs `Pie)
+    ~type_:(chart_typeToJs `Doughnut)
     ~data:(data_t
              ~datasets:[|
                dataset_t
@@ -207,6 +207,34 @@ let param_scatter = Scatter.param_t
                       ()
 ;;
 
+let param_bubble = Bubble.param_t
+                      ~type_:"bubble"
+                      ~data:(Bubble.data_t
+                               ~datasets:[| Bubble.dataset_t
+                                              ~label:"some data"
+                                              ~data:[|
+                                                { Bubble.x=1.; Bubble.y=1.; Bubble.r=20.; };
+                                                { Bubble.x=20.; Bubble.y=3.; Bubble.r=10.; };
+                                                { Bubble.x=1.; Bubble.y=4.; Bubble.r=2.; };
+                                                { Bubble.x=1.; Bubble.y=5.; Bubble.r=200.; };
+                                                { Bubble.x=6.; Bubble.y=9.; Bubble.r=20.; };
+                                                { Bubble.x=2.; Bubble.y=10.; Bubble.r=2.; };
+                                              |]
+                                              ~backgroundColor:"rgba(0,0,255,0.5)"
+                                              ~hoverBackgroundColor:"rgba(0,0,255,0.2)"
+                                              ~borderColor:"rgba(0,0,255,0.5)"
+                                            ()
+                               |]
+                               ())
+                      ~options:(Bubble.opt_t
+                                  ~title:(Bubble.title_t
+                                            ~display:true
+                                            ~text:"Chart.js Bubble plot"
+                                            ())
+                                  ())
+                      ()
+;;
+
 let main () =
   let context = match Dom.Document.getElementById "canvas" Dom.document with
     | None -> raise (Not_found_element "canvas is not found")
@@ -214,7 +242,8 @@ let main () =
        Js.log canvas;
        CanvasElement.getContext2d canvas in
   (* ignore (Chartjs.Scatter.make context param_scatter) *)
-  Chartjs.make context pie_param
+  ignore (Chartjs.Bubble.make context param_bubble)
+  (* Chartjs.make context pie_param *)
   |> ignore
 ;;
 

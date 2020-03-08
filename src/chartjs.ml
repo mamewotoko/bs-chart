@@ -143,3 +143,49 @@ module Scatter =
                 
     external make: Canvas2d.t -> param_t -> t = "Chart" [@@bs.new]
   end
+
+module Bubble =
+  struct
+    type point_t = {
+        x: float;
+        y: float;
+        r: float;
+      }
+    type dataset_t = {
+        label: string  [@bs.optional];
+        data: point_t array [@bs.optional];
+        backgroundColor: color_t [@bs.optional];
+        hoverBackgroundColor: color_t [@bs.optional];
+        borderColor: color_t [@bs.optional];
+      } [@@bs.deriving {abstract = light}]
+                                              
+    type data_t = {
+        labels: string array [@bs.optional];
+        datasets: dataset_t array  [@bs.optional];
+      } [@@bs.deriving {abstract = light}]
+
+    type title_t = {
+        display: bool [@bs.optional];
+        text: string [@bs.optional];
+      } [@@bs.deriving {abstract = light}]
+
+    type opt_t = {
+        responsive: bool [@bs.optional];
+        title: title_t [@bs.optional];
+        legend: legend_t [@bs.optional];
+        tool_tips: tool_tips_t [@bs.optional];
+        showLines: bool [@bs.optional];
+        spanGaps: bool [@bs.optional];
+        hover: hover_t [@bs.optional];
+        scales: scales_opt_t [@bs.optional];
+      } [@@bs.deriving {abstract = light}]
+
+    type param_t = {
+        (* bubble *)
+        type_: string [@bs.as "type"] [@bs.optional];
+        data: data_t [@bs.optional];
+        options: opt_t [@bs.optional];
+      } [@@bs.deriving {abstract = light}]
+                
+    external make: Canvas2d.t -> param_t -> t = "Chart" [@@bs.new]
+  end
