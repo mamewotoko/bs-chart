@@ -1,14 +1,56 @@
-(* chartjs *)
-open Core
+open Chartjs
+open Webapi
+open Canvas
+   
+exception Not_found_element of string
+
+let main () =
+  let context = match Dom.Document.getElementById "canvas" Dom.document with
+    | None -> raise (Not_found_element "canvas is not found")
+    | Some canvas ->
+       Js.log canvas;
+       CanvasElement.getContext2d canvas in
+  let param = {
+      type_ = "bar";
+      data = {
+          labels = [|"Red"; "Blue"; "Yellow"; "Green"; "Purple"; "Orange"|];
+          datasets = [|{
+                        label = "# of Votes";
+                        data = [|12.; 19.; 3.; 5.; 2.; 3.|];
+                        backgroundColor = [|
+                            "rgba(255, 99, 132, 0.2)";
+                            "rgba(54, 162, 235, 0.2)";
+                            "rgba(255, 206, 86, 0.2)";
+                            "rgba(75, 192, 192, 0.2)";
+                            "rgba(153, 102, 255, 0.2)";
+                            "rgba(255, 159, 64, 0.2)"
+                                          |];
+                        borderColor = [|
+                            "rgba(255, 99, 132, 1)";
+                            "rgba(54, 162, 235, 1)";
+                            "rgba(255, 206, 86, 1)";
+                            "rgba(75, 192, 192, 1)";
+                            "rgba(153, 102, 255, 1)";
+                            "rgba(255, 159, 64, 1)"
+                                      |];
+                        borderWidth = 1.
+                    }|]
+        };
+      options = {
+          scales = {
+              yAxes = [|{
+                         ticks = {
+                             beginAtZero = true
+                           }
+                }|]
+            }
+        }
+    } in
+  ignore (Chartjs.make context param)
+;;
 
 let _ =
-  if (Array.length Sys.argv) <> 2 then
-    begin
-      Printf.eprintf "usage: %s chartjs_config_filename" Sys.argv.(0);
-      Pervasives.exit 1
-    end;
-  let filename = Sys.argv.(1) in
-  In_channel.read_all filename
-  |> Chartjs_j.param_t_of_string
-  |> Chartjs_j.string_of_param_t
-  |> print_endline
+  Dom.window
+  |> Dom.Window.asEventTarget
+  |> Dom.EventTarget.addLoadEventListener (fun _ -> main ()) 
+;;
