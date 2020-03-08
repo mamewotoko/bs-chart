@@ -5,6 +5,7 @@ type t
 type chart_type = [
   | `Line [@bs.as "line"]
   | `Bar [@bs.as "bar"]
+  | `HorizontalBar [@bs.as "horizontalBar"]
   | `Radar [@bs.as "radar"]
   | `Pie [@bs.as "pie"]
   | `Doughnut [@bs.as "doughnut"]
@@ -18,9 +19,13 @@ type ticks_opt_t = {
     beginAtZero: bool
   } [@@bs.deriving {abstract = light}]
 
-type scale_label_t = {
+type scaleLabel_t = {
     display: bool [@bs.optional];
     labelString: string [@bs.optional];
+  } [@@bs.deriving {abstract = light}]
+
+type gridLines_t = {
+    drawBorder: bool [@bs.optional];
   } [@@bs.deriving {abstract = light}]
                  
 type axis_opt_t = {
@@ -28,6 +33,8 @@ type axis_opt_t = {
     type_: string  [@bs.as "type"] [@bs.optional];
     (* bottom *)
     position: string [@bs.optional];
+    scaleLabel: scaleLabel_t [@bs.optional];
+    gridLines: gridLines_t [@bs.optional];
     ticks: ticks_opt_t  [@bs.optional];
     display: bool  [@bs.optional];
   } [@@bs.deriving {abstract = light}]
@@ -52,10 +59,16 @@ type tool_tips_t = {
     mode: string [@bs.optional];
     intersect: bool [@bs.optional];
   } [@@bs.deriving {abstract = light}]
-             
+
+type legend_t = {
+    (* e.g. right *)
+    position: string [@bs.optional];
+  } [@@bs.deriving {abstract = light}]
+                 
 type opt_t = {
     responsive: bool [@bs.optional];
     title: title_t [@bs.optional];
+    legend: legend_t [@bs.optional];
     tool_tips: tool_tips_t [@bs.optional];
     showLines: bool [@bs.optional];
     spanGaps: bool [@bs.optional];

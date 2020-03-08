@@ -49,7 +49,8 @@ let param1 =
 (* https://www.chartjs.org/samples/latest/charts/line/basic.html *)
 let param2 =
   param_t
-    ~type_:(chart_typeToJs `Line)
+    (* ~type_:(chart_typeToJs `Line) *)
+    ~type_:(chart_typeToJs `HorizontalBar)
     ~data:(data_t
              ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
              ~datasets:([|dataset_t
@@ -70,8 +71,32 @@ let param2 =
                         |]))
     ~options:(opt_t
                 ~responsive:true
-                ()
-    )
+                ~legend:(legend_t ~position:"right" ())
+                ~title:(title_t
+                          ~text:"Chart.js Horizontal Bar Chart"
+                          ~display:true
+                          ())
+                ~scales:(scales_opt_t
+                           ~xAxes: [|
+                             axis_opt_t
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"month"
+                                             ())
+                               ()
+                           |]
+                           ~yAxes: [|
+                             axis_opt_t
+                               ~ticks:(ticks_opt_t ~beginAtZero:true)
+                               ~gridLines:(gridLines_t ~drawBorder:false ())
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"count"
+                                             ())
+                               ()
+                           |]
+                           ())
+                ())
     ()
 ;;
                              
