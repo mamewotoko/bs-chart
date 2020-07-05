@@ -7,7 +7,6 @@
         "clean": "bsb -clean-world",
         "build": "bsb -make-world && mkdir -p js && browserify -r ./src/main.bs.js:main > src/main.js",
         "watch": "bsb -make-world -w",
-        "dev": "webpack-server --open",
         "doc": "mkdir -p doc && ocamldoc -html -d doc src/main.mli"
     },
     "author": "Takashi Masuyama <mamewotoko@gmail.com>",
@@ -18,9 +17,6 @@
         "browserify": "^16.5.0",
         "bs-platform": "^7.2.1",
         "bs-webapi": "^0.15.6",
-        "chart.js": "^2.9.3",
-        "webpack": "^4.43.0",
-        "webpack-dev-server": "^3.1.14",
-        "webpack-server": "^0.1.2"
+        "chart.js": "^2.9.3"
     }
 }
