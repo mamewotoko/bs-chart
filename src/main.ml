@@ -6,11 +6,10 @@ let (>>=) e f =
   match e with
     None -> None
   | Some e -> Some (f e)
-  
-   
+
 exception Not_found_element of string
 
-let param1 = 
+let param1 =
   param_t
     ~type_:(chart_typeToJs `Bar)
     ~data:(data_t
@@ -130,7 +129,7 @@ let pie_param =
              ())
     ()
 ;;
- 
+
   (* let param = param2 in *)
   (* let param = {
    *     type_ = "bar";
@@ -179,7 +178,7 @@ let pie_param =
  *       iter (n-1) (Random.float scale)::lst in
  *   iter len []
  * ;;
- * 
+ *
  * let random_xy scale_x scale_y len =
  *   let xlst = random_list scale_x len in
  *   let ylst = random_list scale_y len in
@@ -253,7 +252,7 @@ let main () =
   draw "pie" Chartjs.make pie_param;
   draw "scatter" Chartjs.Scatter.make scatter_param;
   draw "bubble" Chartjs.Bubble.make bubble_param;
-  
+
   (* contxt >=
    * let context = match Dom.Document.getElementById "canvas" Dom.document with
    *   | None -> raise (Not_found_element "canvas is not found")
@@ -269,5 +268,5 @@ let main () =
 let _ =
   Dom.window
   |> Dom.Window.asEventTarget
-  |> Dom.EventTarget.addLoadEventListener (fun _ -> main ()) 
+  |> Dom.EventTarget.addLoadEventListener (fun _ -> main ())
 ;;

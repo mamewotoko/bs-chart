@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "clean": "bsb -clean-world",
-        "build": "bsb -make-world && mkdir -p js && browserify -r ./src/main.bs.js:main > js/main.js",
+        "build": "bsb -make-world && mkdir -p js && browserify -r ./src/main.bs.js:main > src/main.js",
         "watch": "bsb -make-world -w",
         "dev": "webpack-dev-server --open",
         "doc": "mkdir -p doc && ocamldoc -html -d doc src/main.mli"
@@ -14,6 +14,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "babelify": "^10.0.0",
+        "chart.js": "^2.9.3",
         "@babel/core": "^7.8.7",
         "browserify": "^16.5.0",
         "bs-platform": "^7.2.1",
