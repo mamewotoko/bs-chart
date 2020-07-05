@@ -1,0 +1,17 @@
+{
+  "name": "bs-chartjs",
+  "version": "0.0.1",
+  "sources": {
+    "dir" : "src",
+    "subdirs" : true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+      "bs-webapi"
+  ],
+  "refmt": 3
+}

@@ -1,6 +1,6 @@
 {
-    "name": "bs-quickstart",
-    "version": "1.0.0",
+    "name": "bs-chart",
+    "version": "0.0.1",
     "description": "",
     "main": "index.js",
     "scripts": {
