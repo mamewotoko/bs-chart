@@ -1,4 +1,4 @@
-bs-chartjs (WIP)
+bs-chartjs (WIP) [![Build Status](https://travis-ci.com/mamewotoko/bs-chart.svg?branch=master)](https://travis-ci.com/mamewotoko/bs-chart)
 ==================
 
 Setup
