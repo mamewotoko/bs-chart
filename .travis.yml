@@ -1,0 +1,11 @@
+language: node_js
+noode_js:
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+before_script:
+  - npm install
+script:
+  - sh build.sh
