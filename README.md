@@ -40,6 +40,8 @@ Files
 ```
 src/main.ml: example app
     chartjs.ml: bindins (library code)
+js/main.js: target code
+index.html: sample
 ```
 
 

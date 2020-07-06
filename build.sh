@@ -7,4 +7,5 @@
 # build sample
 set -e
 npm run build
-$(npm bin)/browserify -t babelify src/main.bs.js -o src/main.js
+rm -rf js/*
+$(npm bin)/browserify -t babelify src/main.bs.js -o js/main.js
