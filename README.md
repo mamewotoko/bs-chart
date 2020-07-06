@@ -1,4 +1,4 @@
-bs-chartjs (WIP) [![Build Status](https://travis-ci.com/mamewotoko/bs-chart.svg?branch=master)](https://travis-ci.com/mamewotoko/bs-chart)
+bs-chart [![Build Status](https://travis-ci.com/mamewotoko/bs-chart.svg?branch=master)](https://travis-ci.com/mamewotoko/bs-chart)
 ==================
 
 ![](image/md_chartjs.png)
