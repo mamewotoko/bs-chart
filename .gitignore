@@ -2,3 +2,4 @@
 .secret.json
 node_modules
 /js/
+*.bs.js
