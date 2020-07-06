@@ -28,6 +28,10 @@ let an2 x =
 let an6 x =
   sqrt (30. +. x)
 
+  (* Printf.printf "%.3f\n" (an2 (an2 (an2 (an2 (an2 (an2 0.))))));
+   * Printf.printf "%.3f\n" (an6 (an6 (an6 (an6 (an6 (an6 0.))))));
+   *)
+
 (*
 \( \forall n \in N, n = \sqrt{n^2-n + \sqrt{n^2-n + \sqrt{n^2-n + \sqrt{n^2-n + ...}}}} \\
 = \sqrt{n(n-1) + \sqrt{n(n-1) + \sqrt{n(n-1) + \sqrt{n(n-1) + ...}}}} \\
@@ -38,12 +42,8 @@ let ann n x =
   sqrt ((n *. n -. n) +. x)
 
 let plot_ann n len element_id color_name =
-  (* Printf.printf "%.3f\n" (an2 (an2 (an2 (an2 (an2 (an2 0.))))));
-   * Printf.printf "%.3f\n" (an6 (an6 (an6 (an6 (an6 (an6 0.))))));
-   * let an7 = ann 7. in *)
-  (* Printf.printf "%.3f\n" (an7 (an7 (an7 (an7 (an7 (an7 0.)))))); *)
+    (*  pattern1: use array *)
   let data = Array.make len 0. in
-  let color_data = Array.make len color_name in
   let nf = float_of_int n in
   let rec iter prev i =
     if len <= i then
@@ -54,6 +54,17 @@ let plot_ann n len element_id color_name =
         iter data.(i) (i+1)
       end in
   iter 0. 0;
+  let opt = opt_t
+              ~scales:(scales_opt_t
+                         ~yAxes: [|
+                           axis_opt_t
+                             (* ~stacked:false *)
+                             ~ticks:(ticks_opt_t ~beginAtZero:true)
+                             ()
+                         |]
+                         ()
+              )
+              () in
   let param = param_t
                 ~type_:(chart_typeToJs `Line)
                 ~data:(data_t
@@ -62,42 +73,92 @@ let plot_ann n len element_id color_name =
                                         ~label:(string_of_int n)
                                         ~data
                                         ~fill:false
-                                        ~backgroundColor:color_data
-                                        ~borderColor:color_data
-                                        ~borderWidth:2.
+                                        ~borderColor:[|color_name|] (* TODO: array or one color name*)
                                         ();
                                     |])
                          ())
-    ~options:(opt_t
-                ~scales:(scales_opt_t
-                           ~xAxes: [|
-                             axis_opt_t
-                               ()
-                           |]
-                           ~yAxes: [|
-                             axis_opt_t
-                               ~stacked:false
-                               ~ticks:(ticks_opt_t ~beginAtZero:true)
-                               ()
-                           |]
-                           ()
-                )
-                ()
-    )
-    () in
-  let draw id f param =
-    let context = match Dom.Document.getElementById id Dom.document with
-      | None -> raise (Not_found_element "canvas is not found")
-      | Some canvas ->
-         CanvasElement.getContext2d canvas in
-    ignore (f context param) in
-    draw element_id Chartjs.make param;
+                ~options:opt
+                () in
+  let context = match Dom.Document.getElementById element_id Dom.document with
+    | None -> raise (Not_found_element "canvas is not found")
+    | Some canvas ->
+       CanvasElement.getContext2d canvas in
+  ignore (Chartjs.make context param)
+;;
+
+type app_dataset_t = {
+   data: float list;
+   label: string;
+   color: string;
+  }
+
+let plot_line datasets element_id =
+  let opt = opt_t
+              ~scales:(scales_opt_t
+                         ~yAxes: [|
+                           axis_opt_t
+                             (* ~stacked:false *)
+                             ~ticks:(ticks_opt_t ~beginAtZero:true)
+                             ()
+                         |]
+                         ()
+              )
+              () in
+  let chartjs_datasets = List.map (fun x ->
+                             dataset_t
+                               ~label:x.label
+                               ~data:(Array.of_list x.data)
+                               ~borderColor:[|x.color|]
+                               ~fill:false
+                               ())
+                           datasets
+                       |> Array.of_list in
+  let datalen = (List.hd datasets).data |> List.length in
+  let param = param_t
+                ~type_:(chart_typeToJs `Line)
+                ~data:(data_t
+                         ~labels:(index_array datalen)
+                         ~datasets:chartjs_datasets
+                         ())
+                ~options:opt
+                () in
+  let context = match Dom.Document.getElementById element_id Dom.document with
+    | None -> raise (Not_found_element "canvas is not found")
+    | Some canvas ->
+       CanvasElement.getContext2d canvas in
+  ignore (Chartjs.make context param)
+;;
+
+let apply_sequence f len =
+  (* pattern2: use list *)
+  let rec iter prev len rev_result =
+    if len = 0 then
+      List.rev rev_result
+    else
+      let current = f prev in
+      iter current (len-1) (current::rev_result) in
+  iter 0. len []
 ;;
 
 let main () =
+  (* plot_ann 2 len "an2" "Blue";
+   * plot_ann 6 len "an6" "Green"; *)
   let len = 20 in
-  plot_ann 2 len "an2" "Blue";
-  plot_ann 6 len "an6" "Green";
+  let d2 = {
+      data = apply_sequence (ann 2.) len;
+      label = "2";
+      color = "Blue"
+    } in
+  let d6 = {
+      data = apply_sequence (ann 6.) len;
+      label = "6";
+      color = "Orange"
+    } in
+  plot_line [d2] "an2";
+  plot_line [d6] "an6";
+
+  plot_line [d2; d6] "plot_simple"
+  (* plot_line [{ data = [1.;2.;3.;4.;5.]; label = "label"; color = "Red"}] "plot_simple" *)
 ;;
 
 let _ =
