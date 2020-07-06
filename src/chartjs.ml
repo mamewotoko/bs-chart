@@ -1,3 +1,4 @@
+(* chart.js@^2.9.3 *)
 open Webapi.Canvas
 type t
 
@@ -27,7 +28,7 @@ type scaleLabel_t = {
 type gridLines_t = {
     drawBorder: bool [@bs.optional];
   } [@@bs.deriving {abstract = light}]
-                 
+
 type axis_opt_t = {
     (* category, linear *)
     type_: string  [@bs.as "type"] [@bs.optional];
@@ -113,7 +114,7 @@ module Scatter =
         backgroundColor: color_t [@bs.optional];
         borderColor: color_t [@bs.optional];
       } [@@bs.deriving {abstract = light}]
-                                              
+
     type data_t = {
         labels: string array [@bs.optional];
         datasets: dataset_t array [@bs.optional];
@@ -140,7 +141,7 @@ module Scatter =
         data: data_t [@bs.optional];
         options: opt_t [@bs.optional];
       } [@@bs.deriving {abstract = light}]
-                
+
     external make: Canvas2d.t -> param_t -> t = "Chart" [@@bs.new]
   end
 
@@ -164,12 +165,12 @@ module Bubble =
         labels: string array [@bs.optional];
         datasets: dataset_t array [@bs.optional];
       } [@@bs.deriving {abstract = light}]
-                   
+
     type param_t = {
         type_: string [@bs.as "type"] [@bs.optional]; (** should be "bubble" *)
         data: data_t [@bs.optional];
         options: opt_t [@bs.optional];
       } [@@bs.deriving {abstract = light}]
-                
+
     external make: Canvas2d.t -> param_t -> t = "Chart" [@@bs.new]
   end
