@@ -97,7 +97,7 @@ let plot_ann n len element_id color_name =
 let main () =
   let len = 20 in
   plot_ann 2 len "an2" "Blue";
-  plot_ann 7 len "an7" "Blue";
+  plot_ann 6 len "an6" "Green";
 ;;
 
 let _ =
