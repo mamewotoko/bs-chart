@@ -30,9 +30,9 @@ Open
 
 1. start web server
 
-```
-python3 -m http.server
-```
+    ```
+    python3 -m http.server
+    ```
 
 2. browse [docs/index.html](http://localhost:8000/docs/) or [doc/radical.md.html](http://localhost:8000/docs/radical.md.html)
 
