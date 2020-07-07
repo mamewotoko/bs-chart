@@ -5,6 +5,11 @@ bs-chart [![Build Status](https://travis-ci.com/mamewotoko/bs-chart.svg?branch=m
 
 Plot with chart.js is embedded in markdeep document.
 
+Examples
+--------
+* [basic](index.html)
+* [markdeep, lines](radical.md.html)
+
 Setup
 ------
 
@@ -52,8 +57,9 @@ index.html: sample
 References
 ----------
 
-* [Chart.js | Open source HTML5 Charts for your website](https://www.chartjs.org/)
+* [Chart.js Open source HTML5 Charts for your website](https://www.chartjs.org/)
 
 ----
 Takashi Masuyama < mamewotoko@gmail.com >
+
 https://mamewo.ddo.jp/
