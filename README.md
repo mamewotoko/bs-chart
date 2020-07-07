@@ -34,7 +34,7 @@ Open
 python3 -m http.server
 ```
 
-2. browse [index.html](http://localhost:8000/) or [radical.md.html](http://localhost:8000/radical.md.html)
+2. browse [docs/index.html](http://localhost:8000/docs/) or [doc/radical.md.html](http://localhost:8000/docs/radical.md.html)
 
 Clean
 -----
