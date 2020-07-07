@@ -140,24 +140,34 @@ let apply_sequence f len =
   iter 0. len []
 ;;
 
+let range s e =
+  (* end exclusive *)
+  let rec iter current result =
+    if current < s then
+      result
+    else
+      iter (current-1) (current::result) in
+  iter (e-1) []
+;;
+
 let main () =
   (* plot_ann 2 len "an2" "Blue";
    * plot_ann 6 len "an6" "Green"; *)
   let len = 20 in
-  let d2 = {
-      data = apply_sequence (ann 2.) len;
-      label = "2";
-      color = "Blue"
+  let pallete = [|"Red"; "Green"; "Blue"; "Yellow"; "Purple"; "Aqua"; "Pink"|] in
+  let data n =
+    let color = pallete.(n-2) in
+    {
+        data = apply_sequence (ann (float_of_int n)) len;
+        label = (string_of_int n);
+        color = color;
     } in
-  let d6 = {
-      data = apply_sequence (ann 6.) len;
-      label = "6";
-      color = "Orange"
-    } in
+  let d2 = data 2 in
+  let d6 = data 6 in
   plot_line [d2] "an2";
   plot_line [d6] "an6";
-
-  plot_line [d2; d6] "plot_simple"
+  let dataset = List.map data (range 2 (2 + (Array.length pallete))) in
+  plot_line dataset "plot_simple"
   (* plot_line [{ data = [1.;2.;3.;4.;5.]; label = "label"; color = "Red"}] "plot_simple" *)
 ;;
 
