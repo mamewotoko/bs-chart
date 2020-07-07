@@ -7,8 +7,8 @@ Plot with chart.js is embedded in markdeep document.
 
 Examples
 --------
-* [basic](index.html)
-* [markdeep, lines](radical.md.html)
+* [basic](docs/index.html)
+* [markdeep, lines](docs/radical.md.html)
 
 Setup
 ------
