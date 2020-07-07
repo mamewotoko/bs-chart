@@ -11,3 +11,6 @@ rm -rf js/*
 $(npm bin)/browserify -t babelify src/main.bs.js -o js/main.js
 # app2
 $(npm bin)/browserify -t babelify src/radical_main.bs.js -o js/radical_main.js
+# build example
+cp -r node_modules/chart.js/dist/* docs/js/chart.js/
+cp js/*.js docs/js/
