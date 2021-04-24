@@ -14,8 +14,8 @@
     "dependencies": {
         "@babel/core": "^7.13.16",
         "babelify": "^10.0.0",
-        "browserify": "^9.0.2",
-        "bs-platform": "^7.2.1",
+        "browserify": "^17.0.0",
+        "bs-platform": "^9.0.2",
         "bs-webapi": "^0.19.1",
         "chart.js": "^3.1.1"
     }
