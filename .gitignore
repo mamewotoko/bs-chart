@@ -2,6 +2,7 @@
 .secret.json
 node_modules
 /js/
+/examples/js/
 lib/bs
 *.bs.js
 .merlin
