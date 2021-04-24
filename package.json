@@ -18,6 +18,7 @@
         "bs-platform": "^9.0.2",
         "bs-webapi": "^0.19.1",
         "chart.js": "^3.1.1",
-        "chartjs": "^0.3.24"
+        "chartjs": "^0.3.24",
+        "elliptic": ">=6.5.4"
     }
 }
