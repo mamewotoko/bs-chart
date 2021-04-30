@@ -7,8 +7,8 @@ Plot with chart.js is embedded in markdeep document.
 
 Examples
 --------
-* [basic](examples/index.html) [bs](./src/main.ml)
-* [markdeep, lines](examples/radical.md.html) [bs](./src/radical_main.ml)
+* basic [demo](https://mamewotoko.github.io/bs-chart/examples/), [HTML](examples/index.html) [bs](./src/main.ml)
+* markdeep, lines [demo](https://mamewotoko.github.io/bs-chart/examples/radical.md.html), [HTML](examples/radical.md.html), [bs](./src/radical_main.ml)
 
 Setup
 ------
@@ -61,6 +61,6 @@ References
 * Strange radical formula [Tweet](https://twitter.com/pickover/status/1272696555338940426)
 
 ----
-Takashi Masuyama < mamewotoko@gmail.com >
+Takashi Masuyama < mamewotoko@gmail.com >  
 
 https://mamewo.ddo.jp/
