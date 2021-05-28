@@ -16,4 +16,3 @@ mkdir -p examples/js/chart.js/
 cp -r node_modules/chart.js/dist/* examples/js/chart.js/
 cp ext/markdeep.min.js examples/js
 cp js/*.js examples/js/
-
