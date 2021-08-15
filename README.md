@@ -53,6 +53,10 @@ js/main.js: target code
 index.html: sample
 ```
 
+TODO
+----------
+
+* support chart.js version 3
 
 References
 ----------
@@ -61,6 +65,6 @@ References
 * Strange radical formula [Tweet](https://twitter.com/pickover/status/1272696555338940426)
 
 ----
-Takashi Masuyama < mamewotoko@gmail.com >  
+Takashi Masuyama < mamewotoko@gmail.com >
 
 https://mamewo.ddo.jp/
