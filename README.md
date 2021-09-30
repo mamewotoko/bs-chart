@@ -63,6 +63,8 @@ TODO
 ----------
 
 * support more features of chart.js
+* support timeseries
+* visualize events
 * covert chart.js 2 code to chart.js 3 code?
 
 References
