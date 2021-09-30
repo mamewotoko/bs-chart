@@ -92,7 +92,7 @@ let param_hbar =
                              axis_opt_t
                                ~scaleLabel:(scaleLabel_t
                                              ~display:true
-                                             ~labelString:"month"
+                                             ~labelString:"count"
                                              ())
                                ()
                            |]
@@ -102,7 +102,7 @@ let param_hbar =
                                ~gridLines:(gridLines_t ~drawBorder:false ())
                                ~scaleLabel:(scaleLabel_t
                                              ~display:true
-                                             ~labelString:"count"
+                                             ~labelString:"month"
                                              ())
                                ()
                            |]
