@@ -38,21 +38,21 @@ dataset_t
                         |])
              ())
     ~options:(opt_t
-                ~scales:(scales_opt_t
-                           ~xAxes: [|
-                             axis_opt_t
-                               (* ~stacked:true *)
-                               ()
-                           |]
-                           ~yAxes: [|
+              ~scales:(scales_opt_t
+                         ~xAxes: [|
+                           axis_opt_t
+                             (* ~stacked:true *)
+                             ()
+                         |]
+                         ~yAxes: [|
                              axis_opt_t
                                ~stacked:true
                                ~ticks:(ticks_opt_t ~beginAtZero:true)
                                ()
-                           |]
-                           ()
-                )
-                ()
+                         |]
+                         ()
+              )
+              ()
     )
     ()
 ;;
@@ -60,7 +60,8 @@ dataset_t
 
 let param_hbar =
   param_t
-    ~type_:(chart_typeToJs `HorizontalBar)
+    (* ~type_:(chart_typeToJs `HorizontalBar) *)
+    ~type_:(chart_typeToJs `Bar)
     ~data:(data_t
              ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
              ~datasets:([|dataset_t
@@ -81,6 +82,7 @@ let param_hbar =
                         |])
              ())
     ~options:(opt_t
+                ~indexAxis:"y"
                 ~responsive:true
                 ~legend:(legend_t ~position:"right" ())
                 ~title:(title_t

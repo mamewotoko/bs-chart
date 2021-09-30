@@ -6691,7 +6691,6 @@ process.umask = function() { return 0; };
 var _map = {
   "Line": "line",
   "Bar": "bar",
-  "HorizontalBar": "horizontalBar",
   "Radar": "radar",
   "Pie": "pie",
   "Doughnut": "doughnut",
@@ -6702,7 +6701,6 @@ var _map = {
 var _revMap = {
   "line": "Line",
   "bar": "Bar",
-  "horizontalBar": "HorizontalBar",
   "radar": "Radar",
   "pie": "Pie",
   "doughnut": "Doughnut",

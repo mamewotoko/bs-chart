@@ -54,7 +54,7 @@ var param_bar = {
   }
 };
 var param_hbar = {
-  type: Chartjs.chart_typeToJs("HorizontalBar"),
+  type: Chartjs.chart_typeToJs("Bar"),
   data: {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [{
@@ -80,17 +80,18 @@ var param_hbar = {
     legend: {
       position: "right"
     },
+    indexAxis: "y",
     scales: {
       xAxes: [{
         scaleLabel: {
           display: true,
-          labelString: "month"
+          labelString: "count"
         }
       }],
       yAxes: [{
         scaleLabel: {
           display: true,
-          labelString: "count"
+          labelString: "month"
         },
         gridLines: {
           drawBorder: false
@@ -1121,7 +1122,6 @@ exports.__8 = __8;
 var _map = {
   "Line": "line",
   "Bar": "bar",
-  "HorizontalBar": "horizontalBar",
   "Radar": "radar",
   "Pie": "pie",
   "Doughnut": "doughnut",
@@ -1132,7 +1132,6 @@ var _map = {
 var _revMap = {
   "line": "Line",
   "bar": "Bar",
-  "horizontalBar": "HorizontalBar",
   "radar": "Radar",
   "pie": "Pie",
   "doughnut": "Doughnut",

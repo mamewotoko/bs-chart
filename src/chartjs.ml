@@ -1,12 +1,14 @@
-(* chart.js@^2.9.3 *)
+(* chart.js@^3.5.1 *)
 open Webapi.Canvas
 type t
 
+
+(* TODO: define module for each chart_type? *)
 (* line | bar | radar | pie | doughnut | polarArea | bubble | scatter *)
 type chart_type = [
   | `Line [@bs.as "line"]
   | `Bar [@bs.as "bar"]
-  | `HorizontalBar [@bs.as "horizontalBar"]
+  (* | `HorizontalBar [@bs.as "horizontalBar"] *)
   | `Radar [@bs.as "radar"]
   | `Pie [@bs.as "pie"]
   | `Doughnut [@bs.as "doughnut"]
@@ -75,7 +77,9 @@ type opt_t = {
     showLines: bool [@bs.optional];
     spanGaps: bool [@bs.optional];
     hover: hover_t [@bs.optional];
+    indexAxis: string [@bs.optional]; (* x, y *)
     scales: scales_opt_t [@bs.optional];
+    (* TODO: plugins: *)
   } [@@bs.deriving {abstract = light}]
 
 type 'a dataset_t = {
