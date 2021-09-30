@@ -57,11 +57,67 @@ dataset_t
     ()
 ;;
 
+
 (* https://www.chartjs.org/samples/latest/charts/line/basic.html *)
 let param2 =
   param_t
     (* ~type_:(chart_typeToJs `Line) *)
     ~type_:(chart_typeToJs `HorizontalBar)
+    ~data:(data_t
+             ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
+             ~datasets:([|dataset_t
+                            ~label:"My First dataset"
+                            (* list or string *)
+                            ~backgroundColor:[|"Red";|]
+                            ~borderColor:[|"Red";|]
+                            ~data:[|93.89; 65.79; 22.57; 33.78; 9.61; 31.21; 2.3|]
+                            ~fill:false
+                            ();
+                          dataset_t
+                            ~label:"My Second dataset"
+                            ~fill:false
+                            ~backgroundColor:[|"Blue";|]
+                            ~borderColor:[|"Blue";|]
+                            ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; 3.4|]
+                            ()
+                        |])
+             ())
+    ~options:(opt_t
+                ~responsive:true
+                ~legend:(legend_t ~position:"right" ())
+                ~title:(title_t
+                          ~text:"Chart.js Horizontal Bar Chart"
+                          ~display:true
+                          ())
+                ~scales:(scales_opt_t
+                           ~xAxes: [|
+                             axis_opt_t
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"month"
+                                             ())
+                               ()
+                           |]
+                           ~yAxes: [|
+                             axis_opt_t
+                               ~ticks:(ticks_opt_t ~beginAtZero:true)
+                               ~gridLines:(gridLines_t ~drawBorder:false ())
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"count"
+                                             ())
+                               ()
+                           |]
+                           ())
+                ())
+    ()
+;;
+
+(* https://www.chartjs.org/samples/latest/charts/line/basic.html *)
+let param_line =
+  param_t
+    ~type_:(chart_typeToJs `Line)
+    (* ~type_:(chart_typeToJs `HorizontalBar) *)
     ~data:(data_t
              ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
              ~datasets:([|dataset_t
@@ -248,7 +304,9 @@ let main () =
          CanvasElement.getContext2d canvas in
     ignore (f context param) in
   draw "bar" Chartjs.make param1;
-  draw "line" Chartjs.make param2;
+  draw "hbar" Chartjs.make param2;
+  draw "line" Chartjs.make param_line;
+
   draw "pie" Chartjs.make pie_param;
   draw "scatter" Chartjs.Scatter.make scatter_param;
   draw "bubble" Chartjs.Bubble.make bubble_param;
