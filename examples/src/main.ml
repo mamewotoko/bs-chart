@@ -168,6 +168,59 @@ let param_line =
     ()
 ;;
 
+let param_radar =
+  param_t
+    ~type_:(chart_typeToJs `Radar)
+    ~data:(data_t
+             ~labels:[|"Umami"; "Amami"; "Sanmi"; "Karami"; "Nigami"; "Enmi"; |]
+             ~datasets:([|dataset_t
+                            ~label:"Katsuo"
+                            (* list or string *)
+                            ~backgroundColor:[|"Red";|]
+                            ~borderColor:[|"Red";|]
+                            ~data:[|93.89; 65.79; 22.57; 33.78; 9.61; 31.21; 2.3|]
+                            ~fill:false
+                            ();
+                          dataset_t
+                            ~label:"Umeboshi"
+                            ~fill:false
+                            ~backgroundColor:[|"Blue";|]
+                            ~borderColor:[|"Blue";|]
+                            ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; 3.4|]
+                            ()
+                        |])
+             ())
+    ~options:(opt_t
+                ~responsive:true
+                ~legend:(legend_t ~position:"right" ())
+                ~title:(title_t
+                          ~text:"Chart.js Horizontal Bar Chart"
+                          ~display:true
+                          ())
+                ~scales:(scales_opt_t
+                           ~xAxes: [|
+                             axis_opt_t
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"month"
+                                             ())
+                               ()
+                           |]
+                           ~yAxes: [|
+                             axis_opt_t
+                               ~ticks:(ticks_opt_t ~beginAtZero:true)
+                               ~gridLines:(gridLines_t ~drawBorder:false ())
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"count"
+                                             ())
+                               ()
+                           |]
+                           ())
+                ())
+    ()
+;;
+
 let pie_param =
   param_t
     ~type_:(chart_typeToJs `Doughnut)
@@ -306,21 +359,10 @@ let main () =
   draw "bar" Chartjs.make param1;
   draw "hbar" Chartjs.make param2;
   draw "line" Chartjs.make param_line;
-
+  draw "radar" Chartjs.make param_radar;
   draw "pie" Chartjs.make pie_param;
   draw "scatter" Chartjs.Scatter.make scatter_param;
   draw "bubble" Chartjs.Bubble.make bubble_param;
-
-  (* contxt >=
-   * let context = match Dom.Document.getElementById "canvas" Dom.document with
-   *   | None -> raise (Not_found_element "canvas is not found")
-   *   | Some canvas ->
-   *      Js.log canvas;
-   *      CanvasElement.getContext2d canvas in
-   * (\* ignore (Chartjs.Scatter.make context param_scatter) *\)
-   * ignore (Chartjs.Bubble.make context param_bubble)
-   * ignore (Chartjs.Bubble.make context param_bubble) *)
-  (* Chartjs.make context pie_param *)
 ;;
 
 let _ =

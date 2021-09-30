@@ -151,6 +151,55 @@ var param_line = {
     }
   }
 };
+var param_radar = {
+  type: Chartjs.chart_typeToJs("Radar"),
+  data: {
+    labels: ["Umami", "Amami", "Sanmi", "Karami", "Nigami", "Enmi"],
+    datasets: [{
+      label: "Katsuo",
+      data: [93.89, 65.79, 22.57, 33.78, 9.61, 31.21, 2.3],
+      backgroundColor: ["Red"],
+      borderColor: ["Red"],
+      fill: false
+    }, {
+      label: "Umeboshi",
+      data: [27.99, 15.09, 91.47, 5.92, 15.75, 92.90, 3.4],
+      backgroundColor: ["Blue"],
+      borderColor: ["Blue"],
+      fill: false
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: "Chart.js Horizontal Bar Chart"
+    },
+    legend: {
+      position: "right"
+    },
+    scales: {
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: "month"
+        }
+      }],
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: "count"
+        },
+        gridLines: {
+          drawBorder: false
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+};
 var pie_param = {
   type: Chartjs.chart_typeToJs("Doughnut"),
   data: {
@@ -269,6 +318,9 @@ function main(param) {
   draw("line", function (prim, prim$1) {
     return new Chart(prim, prim$1);
   }, param_line);
+  draw("radar", function (prim, prim$1) {
+    return new Chart(prim, prim$1);
+  }, param_radar);
   draw("pie", function (prim, prim$1) {
     return new Chart(prim, prim$1);
   }, pie_param);
@@ -288,6 +340,7 @@ exports.Not_found_element = Not_found_element;
 exports.param1 = param1;
 exports.param2 = param2;
 exports.param_line = param_line;
+exports.param_radar = param_radar;
 exports.pie_param = pie_param;
 exports.scatter_param = scatter_param;
 exports.bubble_param = bubble_param;
