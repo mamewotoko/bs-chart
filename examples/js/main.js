@@ -73,13 +73,6 @@ var param_hbar = {
   },
   options: {
     responsive: true,
-    title: {
-      display: true,
-      text: "Chart.js Horizontal Bar Chart"
-    },
-    legend: {
-      position: "right"
-    },
     indexAxis: "y",
     scales: {
       xAxes: [{
@@ -100,6 +93,15 @@ var param_hbar = {
           beginAtZero: true
         }
       }]
+    },
+    plugins: {
+      legend: {
+        position: "right"
+      },
+      title: {
+        display: true,
+        text: "Chart.js Horizontal Bar Chart"
+      }
     }
   }
 };
@@ -123,13 +125,6 @@ var param_line = {
   },
   options: {
     responsive: true,
-    title: {
-      display: true,
-      text: "Chart.js Horizontal Bar Chart"
-    },
-    legend: {
-      position: "right"
-    },
     scales: {
       xAxes: [{
         scaleLabel: {
@@ -149,6 +144,15 @@ var param_line = {
           beginAtZero: true
         }
       }]
+    },
+    plugins: {
+      legend: {
+        position: "right"
+      },
+      title: {
+        display: true,
+        text: "Chart.js Horizontal Bar Chart"
+      }
     }
   }
 };
@@ -158,13 +162,13 @@ var param_radar = {
     labels: ["Umami", "Amami", "Sanmi", "Karami", "Nigami", "Enmi"],
     datasets: [{
       label: "Katsuo",
-      data: [93.89, 65.79, 22.57, 33.78, 9.61, 31.21, 2.3],
+      data: [93.89, 65.79, 22.57, 33.78, 9.61, 31.21],
       backgroundColor: ["Red"],
       borderColor: ["Red"],
       fill: false
     }, {
       label: "Umeboshi",
-      data: [27.99, 15.09, 91.47, 5.92, 15.75, 92.90, 3.4],
+      data: [27.99, 15.09, 91.47, 5.92, 15.75, 92.90],
       backgroundColor: ["Blue"],
       borderColor: ["Blue"],
       fill: false
@@ -172,13 +176,6 @@ var param_radar = {
   },
   options: {
     responsive: true,
-    title: {
-      display: true,
-      text: "Chart.js Horizontal Bar Chart"
-    },
-    legend: {
-      position: "right"
-    },
     scales: {
       xAxes: [{
         scaleLabel: {
@@ -198,6 +195,15 @@ var param_radar = {
           beginAtZero: true
         }
       }]
+    },
+    plugins: {
+      legend: {
+        position: "right"
+      },
+      title: {
+        display: true,
+        text: "Chart.js Horizontal Bar Chart"
+      }
     }
   }
 };
@@ -285,9 +291,11 @@ var bubble_param = {
     }]
   },
   options: {
-    title: {
-      display: true,
-      text: "Chart.js Bubble plot"
+    plugins: {
+      title: {
+        display: true,
+        text: "Chart.js Bubble plot"
+      }
     }
   }
 };

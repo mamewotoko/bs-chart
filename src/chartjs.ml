@@ -69,17 +69,20 @@ type legend_t = {
     position: string [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
+type plugins_t = {
+    legend: legend_t [@bs.optional];
+    title: title_t [@bs.optional];
+ } [@@bs.deriving {abstract = light}]
+
 type opt_t = {
     responsive: bool [@bs.optional];
-    title: title_t [@bs.optional];
-    legend: legend_t [@bs.optional];
     tool_tips: tool_tips_t [@bs.optional];
     showLines: bool [@bs.optional];
     spanGaps: bool [@bs.optional];
     hover: hover_t [@bs.optional];
     indexAxis: string [@bs.optional]; (* x, y *)
     scales: scales_opt_t [@bs.optional];
-    (* TODO: plugins: *)
+    plugins: plugins_t [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
 type 'a dataset_t = {
