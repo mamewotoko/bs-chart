@@ -38,21 +38,21 @@ dataset_t
                         |])
              ())
     ~options:(opt_t
-                ~scales:(scales_opt_t
-                           ~xAxes: [|
-                             axis_opt_t
-                               (* ~stacked:true *)
-                               ()
-                           |]
-                           ~yAxes: [|
+              ~scales:(scales_opt_t
+                         ~xAxes: [|
+                           axis_opt_t
+                             (* ~stacked:true *)
+                             ()
+                         |]
+                         ~yAxes: [|
                              axis_opt_t
                                ~stacked:true
                                ~ticks:(ticks_opt_t ~beginAtZero:true)
                                ()
-                           |]
-                           ()
-                )
-                ()
+                         |]
+                         ()
+              )
+              ()
     )
     ()
 ;;
@@ -60,7 +60,8 @@ dataset_t
 
 let param_hbar =
   param_t
-    ~type_:(chart_typeToJs `HorizontalBar)
+    (* ~type_:(chart_typeToJs `HorizontalBar) *)
+    ~type_:(chart_typeToJs `Bar)
     ~data:(data_t
              ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
              ~datasets:([|dataset_t
@@ -81,12 +82,15 @@ let param_hbar =
                         |])
              ())
     ~options:(opt_t
+                ~indexAxis:"y"
                 ~responsive:true
-                ~legend:(legend_t ~position:"right" ())
-                ~title:(title_t
-                          ~text:"Chart.js Horizontal Bar Chart"
-                          ~display:true
-                          ())
+                ~plugins:(plugins_t
+                            ~legend:(legend_t ~position:"right" ())
+                            ~title:(title_t
+                                      ~text:"Chart.js Horizontal Bar Chart"
+                                      ~display:true
+                                      ())
+                            ())
                 ~scales:(scales_opt_t
                            ~xAxes: [|
                              axis_opt_t
@@ -137,11 +141,13 @@ let param_line =
              ())
     ~options:(opt_t
                 ~responsive:true
-                ~legend:(legend_t ~position:"right" ())
-                ~title:(title_t
-                          ~text:"Chart.js Horizontal Bar Chart"
-                          ~display:true
-                          ())
+                ~plugins:(plugins_t
+                            ~legend:(legend_t ~position:"right" ())
+                            ~title:(title_t
+                                      ~text:"Chart.js Horizontal Bar Chart"
+                                      ~display:true
+                                      ())
+                            ())
                 ~scales:(scales_opt_t
                            ~xAxes: [|
                              axis_opt_t
@@ -176,7 +182,7 @@ let param_radar =
                             (* list or string *)
                             ~backgroundColor:[|"Red";|]
                             ~borderColor:[|"Red";|]
-                            ~data:[|93.89; 65.79; 22.57; 33.78; 9.61; 31.21; 2.3|]
+                            ~data:[|93.89; 65.79; 22.57; 33.78; 9.61; 31.21; |]
                             ~fill:false
                             ();
                           dataset_t
@@ -184,17 +190,19 @@ let param_radar =
                             ~fill:false
                             ~backgroundColor:[|"Blue";|]
                             ~borderColor:[|"Blue";|]
-                            ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; 3.4|]
+                            ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; |]
                             ()
                         |])
              ())
     ~options:(opt_t
                 ~responsive:true
-                ~legend:(legend_t ~position:"right" ())
-                ~title:(title_t
-                          ~text:"Chart.js Horizontal Bar Chart"
-                          ~display:true
-                          ())
+                ~plugins:(plugins_t
+                            ~legend:(legend_t ~position:"right" ())
+                            ~title:(title_t
+                                      ~text:"Chart.js Horizontal Bar Chart"
+                                      ~display:true
+                                      ())
+                            ())
                 ~scales:(scales_opt_t
                            ~xAxes: [|
                              axis_opt_t
@@ -284,9 +292,11 @@ let bubble_param = Bubble.param_t
                                |]
                                ())
                       ~options:(opt_t
-                                  ~title:(title_t
-                                            ~display:true
-                                            ~text:"Chart.js Bubble plot"
+                                ~plugins:(plugins_t
+                                            ~title:(title_t
+                                                      ~display:true
+                                                      ~text:"Chart.js Bubble plot"
+                                                      ())
                                             ())
                                   ())
                       ()

@@ -1,6 +1,8 @@
 bs-chart [![Build Status](https://travis-ci.com/mamewotoko/bs-chart.svg?branch=master)](https://travis-ci.com/mamewotoko/bs-chart)
 ==================
 
+A BuckeScript bindings of [Chart.js](https://www.chartjs.org/)
+
 ![](image/md_chartjs.png)
 
 Plot with chart.js is embedded in markdeep document.
@@ -47,16 +49,21 @@ Files
 -------
 
 ```
-src/main.ml: example app
-    chartjs.ml: bindins (library code)
-js/main.js: target code
-index.html: sample
+examples/src/main.ml: example app1
+             js/main.js: target code
+         index.html
+             radical_main.ml: example app2
+             js/radical.main.js: target code
+         radical.md.html
+
+src/chartjs.ml: bindins (library code)
 ```
 
 TODO
 ----------
 
-* support chart.js version 3
+* support more features of chart.js
+* covert chart.js 2 code to chart.js 3 code?
 
 References
 ----------
