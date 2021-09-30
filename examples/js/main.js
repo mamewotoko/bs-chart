@@ -17,7 +17,7 @@ function $great$great$eq(e, f) {
 }
 
 var Not_found_element = /* @__PURE__ */Caml_exceptions.create("Main.Not_found_element");
-var param1 = {
+var param_bar = {
   type: Chartjs.chart_typeToJs("Bar"),
   data: {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -53,21 +53,21 @@ var param1 = {
     }
   }
 };
-var param2 = {
+var param_hbar = {
   type: Chartjs.chart_typeToJs("HorizontalBar"),
   data: {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [{
       label: "My First dataset",
       data: [93.89, 65.79, 22.57, 33.78, 9.61, 31.21, 2.3],
-      backgroundColor: ["Red"],
-      borderColor: ["Red"],
+      backgroundColor: ["Red", "Red", "Red", "Red", "Red", "Red", "Red"],
+      borderColor: ["Red", "Red", "Red", "Red", "Red", "Red", "Red"],
       fill: false
     }, {
       label: "My Second dataset",
       data: [27.99, 15.09, 91.47, 5.92, 15.75, 92.90, 3.4],
-      backgroundColor: ["Blue"],
-      borderColor: ["Blue"],
+      backgroundColor: ["Blue", "Blue", "Blue", "Blue", "Blue", "Blue", "Blue"],
+      borderColor: ["Blue", "Blue", "Blue", "Blue", "Blue", "Blue", "Blue"],
       fill: false
     }]
   },
@@ -311,10 +311,10 @@ function main(param) {
 
   draw("bar", function (prim, prim$1) {
     return new Chart(prim, prim$1);
-  }, param1);
+  }, param_bar);
   draw("hbar", function (prim, prim$1) {
     return new Chart(prim, prim$1);
-  }, param2);
+  }, param_hbar);
   draw("line", function (prim, prim$1) {
     return new Chart(prim, prim$1);
   }, param_line);
@@ -337,15 +337,15 @@ window.addEventListener("load", function (param) {
 });
 exports.$great$great$eq = $great$great$eq;
 exports.Not_found_element = Not_found_element;
-exports.param1 = param1;
-exports.param2 = param2;
+exports.param_bar = param_bar;
+exports.param_hbar = param_hbar;
 exports.param_line = param_line;
 exports.param_radar = param_radar;
 exports.pie_param = pie_param;
 exports.scatter_param = scatter_param;
 exports.bubble_param = bubble_param;
 exports.main = main;
-/* param1 Not a pure module */
+/* param_bar Not a pure module */
 
 },{"../../src/chartjs.bs.js":6,"bs-platform/lib/js/caml_exceptions.js":3,"bs-platform/lib/js/caml_option.js":4,"bs-platform/lib/js/curry.js":5}],2:[function(require,module,exports){
 'use strict';

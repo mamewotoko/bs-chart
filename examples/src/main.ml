@@ -9,7 +9,7 @@ let (>>=) e f =
 
 exception Not_found_element of string
 
-let param1 =
+let param_bar =
   param_t
     ~type_:(chart_typeToJs `Bar)
     ~data:(data_t
@@ -58,26 +58,24 @@ dataset_t
 ;;
 
 
-(* https://www.chartjs.org/samples/latest/charts/line/basic.html *)
-let param2 =
+let param_hbar =
   param_t
-    (* ~type_:(chart_typeToJs `Line) *)
     ~type_:(chart_typeToJs `HorizontalBar)
     ~data:(data_t
              ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
              ~datasets:([|dataset_t
                             ~label:"My First dataset"
                             (* list or string *)
-                            ~backgroundColor:[|"Red";|]
-                            ~borderColor:[|"Red";|]
+                            ~backgroundColor:[|"Red";"Red";"Red";"Red";"Red";"Red";"Red";|]
+                            ~borderColor:[|"Red";"Red";"Red";"Red";"Red";"Red";"Red";|]
                             ~data:[|93.89; 65.79; 22.57; 33.78; 9.61; 31.21; 2.3|]
                             ~fill:false
                             ();
                           dataset_t
                             ~label:"My Second dataset"
                             ~fill:false
-                            ~backgroundColor:[|"Blue";|]
-                            ~borderColor:[|"Blue";|]
+                            ~backgroundColor:[|"Blue";"Blue";"Blue";"Blue";"Blue";"Blue";"Blue";|]
+                            ~borderColor:[|"Blue";"Blue";"Blue";"Blue";"Blue";"Blue";"Blue";|]
                             ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; 3.4|]
                             ()
                         |])
@@ -239,61 +237,6 @@ let pie_param =
     ()
 ;;
 
-  (* let param = param2 in *)
-  (* let param = {
-   *     type_ = "bar";
-   *     data = {
-   *         labels = [|"Red"; "Blue"; "Yellow"; "Green"; "Purple"; "Orange"|];
-   *         datasets = [|{
-   *                       label = "# of Votes";
-   *                       data = [|12.; 19.; 3.; 5.; 2.; 3.|];
-   *                       backgroundColor = [|
-   *                           "rgba(255, 99, 132, 0.2)";
-   *                           "rgba(54, 162, 235, 0.2)";
-   *                           "rgba(255, 206, 86, 0.2)";
-   *                           "rgba(75, 192, 192, 0.2)";
-   *                           "rgba(153, 102, 255, 0.2)";
-   *                           "rgba(255, 159, 64, 0.2)"
-   *                                         |];
-   *                       borderColor = [|
-   *                           "rgba(255, 99, 132, 1)";
-   *                           "rgba(54, 162, 235, 1)";
-   *                           "rgba(255, 206, 86, 1)";
-   *                           "rgba(75, 192, 192, 1)";
-   *                           "rgba(153, 102, 255, 1)";
-   *                           "rgba(255, 159, 64, 1)"
-   *                                     |];
-   *                       borderWidth = 1.
-   *                   }|]
-   *       };
-   *     options = {
-   *         scales = {
-   *             yAxes = [|{
-   *                        ticks = {
-   *                            beginAtZero = true
-   *                          }
-   *               }|]
-   *           }
-   *       }
-   *   } in *)
-(* ignore (Chartjs.make context param) *)
-
-
-(* let random_list scale len =
- *   let rec iter n lst =
- *     if n = 0 then
- *       lst
- *     else
- *       iter (n-1) (Random.float scale)::lst in
- *   iter len []
- * ;;
- *
- * let random_xy scale_x scale_y len =
- *   let xlst = random_list scale_x len in
- *   let ylst = random_list scale_y len in
- *   map2 (fun x y -> point_t ~x:x ~y:y)
- * ;; *)
-
 let scatter_param = Scatter.param_t
                       ~type_:"scatter"
                       ~data:(Scatter.data_t
@@ -356,8 +299,8 @@ let main () =
       | Some canvas ->
          CanvasElement.getContext2d canvas in
     ignore (f context param) in
-  draw "bar" Chartjs.make param1;
-  draw "hbar" Chartjs.make param2;
+  draw "bar" Chartjs.make param_bar;
+  draw "hbar" Chartjs.make param_hbar;
   draw "line" Chartjs.make param_line;
   draw "radar" Chartjs.make param_radar;
   draw "pie" Chartjs.make pie_param;

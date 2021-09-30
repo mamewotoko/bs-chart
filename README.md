@@ -7,7 +7,7 @@ Plot with chart.js is embedded in markdeep document.
 
 Examples
 --------
-* basic [demo](https://mamewotoko.github.io/bs-chart/examples/), [HTML source](examples/index.html) [bs](./src/main.ml)
+* basic [demo](https://mamewotoko.github.io/bs-chart/examples/), [HTML source](examples/index.html), [bs](./src/main.ml)
 * markdeep, lines [demo](https://mamewotoko.github.io/bs-chart/examples/radical.md.html),  [bs](./src/radical_main.ml)
 
 Setup
