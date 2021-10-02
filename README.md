@@ -9,8 +9,8 @@ Plot with chart.js is embedded in markdeep document.
 
 Examples
 --------
-* basic [demo](https://mamewotoko.github.io/bs-chart/examples/), [HTML source](examples/index.html), [bs](./src/main.ml)
-* markdeep, lines [demo](https://mamewotoko.github.io/bs-chart/examples/radical.md.html),  [bs](./src/radical_main.ml)
+* basic [demo](https://mamewotoko.github.io/bs-chart/examples/), [HTML source](examples/index.html), [bs](./examples/src/main.ml)
+* markdeep, lines [demo](https://mamewotoko.github.io/bs-chart/examples/radical.md.html),  [bs](./examples/src/radical_main.ml)
 
 Setup
 ------
