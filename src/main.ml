@@ -79,7 +79,7 @@ let param2 =
                             ~borderColor:[|"Blue";|]
                             ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; 3.4|]
                             ()
-                        |])
+                         |])
              ())
     ~options:(opt_t
                 ~responsive:true
@@ -108,10 +108,80 @@ let param2 =
                                ()
                            |]
                            ())
+                (* ~pan:(pan_t *)
+                (*         ~enabled:true *)
+                (*         ~mode:"xy" *)
+                (*         ()) *)
+                (* ~zoom:(zoom_t *)
+                (*        ~enabled:true *)
+                (*        ~mode:"xy" *)
+                (*        ()) *)
                 ())
     ()
 ;;
 
+(* https://www.chartjs.org/samples/latest/charts/line/basic.html *)
+let param_line =
+  param_t
+    ~type_:(chart_typeToJs `Line)
+    ~data:(data_t
+             ~labels:[|"January"; "February"; "March"; "April"; "May"; "June"; "July"|]
+             ~datasets:([|dataset_t
+                            ~label:"My First dataset"
+                            (* list or string *)
+                            ~backgroundColor:[|"Red";|]
+                            ~borderColor:[|"Red";|]
+                            ~data:[|93.89; 65.79; 22.57; 33.78; 9.61; 31.21; 2.3|]
+                            ~fill:false
+                            ();
+                          dataset_t
+                            ~label:"My Second dataset"
+                            ~fill:false
+                            ~backgroundColor:[|"Blue";|]
+                            ~borderColor:[|"Blue";|]
+                            ~data:[|27.99; 15.09; 91.47; 5.92; 15.75; 92.90; 3.4|]
+                            ()
+                         |])
+             ())
+    ~options:(opt_t
+                ~responsive:true
+                ~legend:(legend_t ~position:"right" ())
+                ~title:(title_t
+                          ~text:"Chart.js Line chart"
+                          ~display:true
+                          ())
+                ~scales:(scales_opt_t
+                           ~xAxes: [|
+                             axis_opt_t
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"month"
+                                             ())
+                               ()
+                           |]
+                           ~yAxes: [|
+                             axis_opt_t
+                               ~ticks:(ticks_opt_t ~beginAtZero:true)
+                               ~gridLines:(gridLines_t ~drawBorder:false ())
+                               ~scaleLabel:(scaleLabel_t
+                                             ~display:true
+                                             ~labelString:"count"
+                                             ())
+                               ()
+                           |]
+                           ())
+                (* ~pan:(pan_t *)
+                (*         ~enabled:true *)
+                (*         ~mode:"xy" *)
+                (*         ()) *)
+                (* ~zoom:(zoom_t *)
+                (*        ~enabled:true *)
+                (*        ~mode:"xy" *)
+                (*        ()) *)
+                ())
+    ()
+;;
+  
 let pie_param =
   param_t
     ~type_:(chart_typeToJs `Doughnut)
@@ -129,61 +199,6 @@ let pie_param =
              ())
     ()
 ;;
-
-  (* let param = param2 in *)
-  (* let param = {
-   *     type_ = "bar";
-   *     data = {
-   *         labels = [|"Red"; "Blue"; "Yellow"; "Green"; "Purple"; "Orange"|];
-   *         datasets = [|{
-   *                       label = "# of Votes";
-   *                       data = [|12.; 19.; 3.; 5.; 2.; 3.|];
-   *                       backgroundColor = [|
-   *                           "rgba(255, 99, 132, 0.2)";
-   *                           "rgba(54, 162, 235, 0.2)";
-   *                           "rgba(255, 206, 86, 0.2)";
-   *                           "rgba(75, 192, 192, 0.2)";
-   *                           "rgba(153, 102, 255, 0.2)";
-   *                           "rgba(255, 159, 64, 0.2)"
-   *                                         |];
-   *                       borderColor = [|
-   *                           "rgba(255, 99, 132, 1)";
-   *                           "rgba(54, 162, 235, 1)";
-   *                           "rgba(255, 206, 86, 1)";
-   *                           "rgba(75, 192, 192, 1)";
-   *                           "rgba(153, 102, 255, 1)";
-   *                           "rgba(255, 159, 64, 1)"
-   *                                     |];
-   *                       borderWidth = 1.
-   *                   }|]
-   *       };
-   *     options = {
-   *         scales = {
-   *             yAxes = [|{
-   *                        ticks = {
-   *                            beginAtZero = true
-   *                          }
-   *               }|]
-   *           }
-   *       }
-   *   } in *)
-(* ignore (Chartjs.make context param) *)
-
-
-(* let random_list scale len =
- *   let rec iter n lst =
- *     if n = 0 then
- *       lst
- *     else
- *       iter (n-1) (Random.float scale)::lst in
- *   iter len []
- * ;;
- *
- * let random_xy scale_x scale_y len =
- *   let xlst = random_list scale_x len in
- *   let ylst = random_list scale_y len in
- *   map2 (fun x y -> point_t ~x:x ~y:y)
- * ;; *)
 
 let scatter_param = Scatter.param_t
                       ~type_:"scatter"
@@ -248,21 +263,11 @@ let main () =
          CanvasElement.getContext2d canvas in
     ignore (f context param) in
   draw "bar" Chartjs.make param1;
-  draw "line" Chartjs.make param2;
+  draw "hbar" Chartjs.make param2;
+  draw "line" Chartjs.make param_line;
   draw "pie" Chartjs.make pie_param;
   draw "scatter" Chartjs.Scatter.make scatter_param;
   draw "bubble" Chartjs.Bubble.make bubble_param;
-
-  (* contxt >=
-   * let context = match Dom.Document.getElementById "canvas" Dom.document with
-   *   | None -> raise (Not_found_element "canvas is not found")
-   *   | Some canvas ->
-   *      Js.log canvas;
-   *      CanvasElement.getContext2d canvas in
-   * (\* ignore (Chartjs.Scatter.make context param_scatter) *\)
-   * ignore (Chartjs.Bubble.make context param_bubble)
-   * ignore (Chartjs.Bubble.make context param_bubble) *)
-  (* Chartjs.make context pie_param *)
 ;;
 
 let _ =

@@ -19,6 +19,7 @@
         "bs-webapi": "^0.19.1",
         "chart.js": "^2.9.4",
         "chartjs": "^0.3.24",
-        "elliptic": ">=6.5.4"
+        "elliptic": ">=6.5.4",
+        "http-server": "^13.0.2"
     }
 }

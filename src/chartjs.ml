@@ -67,6 +67,16 @@ type legend_t = {
     position: string [@bs.optional];
   } [@@bs.deriving {abstract = light}]
 
+(* type pan_t = { *)
+(*     enabled: bool [@bs.optional]; *)
+(*     mode: string [@bs.optional]; *)
+(*   } [@@bs.deriving {abstract = light}] *)
+    
+(* type zoom_t = { *)
+(*     enabled: bool [@bs.optional]; *)
+(*     mode: string [@bs.optional]; *)
+(*   } [@@bs.deriving {abstract = light}] *)
+    
 type opt_t = {
     responsive: bool [@bs.optional];
     title: title_t [@bs.optional];
@@ -76,6 +86,10 @@ type opt_t = {
     spanGaps: bool [@bs.optional];
     hover: hover_t [@bs.optional];
     scales: scales_opt_t [@bs.optional];
+
+    (* pan: pan_t  [@bs.optional]; *)
+    (* zoom: zoom_t  [@bs.optional]; *)
+    
   } [@@bs.deriving {abstract = light}]
 
 type 'a dataset_t = {

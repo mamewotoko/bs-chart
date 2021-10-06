@@ -912,6 +912,55 @@ var param2 = {
     }
   }
 };
+var param_line = {
+  type: Chartjs.chart_typeToJs("Line"),
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [{
+      label: "My First dataset",
+      data: [93.89, 65.79, 22.57, 33.78, 9.61, 31.21, 2.3],
+      backgroundColor: ["Red"],
+      borderColor: ["Red"],
+      fill: false
+    }, {
+      label: "My Second dataset",
+      data: [27.99, 15.09, 91.47, 5.92, 15.75, 92.90, 3.4],
+      backgroundColor: ["Blue"],
+      borderColor: ["Blue"],
+      fill: false
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: "Chart.js Line chart"
+    },
+    legend: {
+      position: "right"
+    },
+    scales: {
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: "month"
+        }
+      }],
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: "count"
+        },
+        gridLines: {
+          drawBorder: false
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+};
 var pie_param = {
   type: Chartjs.chart_typeToJs("Doughnut"),
   data: {
@@ -1024,9 +1073,12 @@ function main(param) {
   draw("bar", function (prim, prim$1) {
     return new Chart(prim, prim$1);
   }, param1);
-  draw("line", function (prim, prim$1) {
+  draw("hbar", function (prim, prim$1) {
     return new Chart(prim, prim$1);
   }, param2);
+  draw("line", function (prim, prim$1) {
+    return new Chart(prim, prim$1);
+  }, param_line);
   draw("pie", function (prim, prim$1) {
     return new Chart(prim, prim$1);
   }, pie_param);
@@ -1045,6 +1097,7 @@ exports.$great$great$eq = $great$great$eq;
 exports.Not_found_element = Not_found_element;
 exports.param1 = param1;
 exports.param2 = param2;
+exports.param_line = param_line;
 exports.pie_param = pie_param;
 exports.scatter_param = scatter_param;
 exports.bubble_param = bubble_param;
