@@ -1,17 +1,14 @@
 {
-  "name": "bs-chart",
-  "version": "0.0.2",
-  "sources": {
-    "dir" : "src",
-    "subdirs" : true
-  },
-  "package-specs": {
-    "module": "commonjs",
-    "in-source": true
-  },
-  "suffix": ".bs.js",
-  "bs-dependencies": [
-      "bs-webapi"
-  ],
-  "refmt": 3
+    "name": "bs-chart",
+    "version": "0.0.2",
+    "sources": ["src", "examples/src"],
+    "package-specs": {
+	"module": "commonjs",
+	"in-source": true
+    },
+    "suffix": ".bs.js",
+    "bs-dependencies": [
+	"bs-webapi"
+    ],
+    "refmt": 3
 }
